@@ -36,4 +36,6 @@ public abstract class AutocompleteSource {
         object.addProperty("cause", "Exception");
         return new JsonHolder(object);
     }
+
+    public abstract void refresh();
 }

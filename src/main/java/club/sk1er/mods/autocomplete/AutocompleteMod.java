@@ -1,6 +1,7 @@
 package club.sk1er.mods.autocomplete;
 
 import club.sk1er.mods.autocomplete.config.MasterConfig;
+import club.sk1er.mods.autocomplete.sources.AutocompleteSources;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -21,6 +22,7 @@ public class AutocompleteMod {
     public void init(FMLPreInitializationEvent event) {
         ClientCommandHandler.instance.registerCommand(new CommandAutocomplete());
         masterConfig = new MasterConfig(event.getSuggestedConfigurationFile());
+        ClientCommandHandler.instance.registerCommand(new AutocompleteImpl("msg", AutocompleteSources.values()));
     }
 
     public MasterConfig getMasterConfig() {

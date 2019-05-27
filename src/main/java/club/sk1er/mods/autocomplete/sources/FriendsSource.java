@@ -17,13 +17,7 @@ public class FriendsSource extends AutocompleteSource {
 
     public FriendsSource(FriendsConfig config) {
         this.config = config;
-        JsonHolder fetch = fetch("https://api.sk1er.club/friends/" + Minecraft.getMinecraft().getSession().getPlayerID());
-        HashSet<FriendElement> friendElements = new HashSet<>();
-        for (String key : fetch.getKeys()) {
-            JsonHolder jsonHolder = fetch.optJsonObject(key);
-            friendElements.add(new FriendElement(jsonHolder.optString("name"), HypixelRank.parse(jsonHolder.optString("rank"))));
-        }
-        this.data = friendElements;
+        refresh();
     }
 
     @Override
@@ -31,6 +25,17 @@ public class FriendsSource extends AutocompleteSource {
         if (data == null)
             return new HashSet<>();
         return data.stream().filter(friendElement -> config.get(friendElement.rank)).map(FriendElement::getName).collect(Collectors.toSet());
+    }
+
+    @Override
+    public void refresh() {
+        JsonHolder fetch = fetch("https://api.sk1er.club/friends/" + Minecraft.getMinecraft().getSession().getPlayerID());
+        HashSet<FriendElement> friendElements = new HashSet<>();
+        for (String key : fetch.getKeys()) {
+            JsonHolder jsonHolder = fetch.optJsonObject(key);
+            friendElements.add(new FriendElement(jsonHolder.optString("name"), HypixelRank.parse(jsonHolder.optString("rank"))));
+        }
+        this.data = friendElements;
     }
 
     class FriendElement {

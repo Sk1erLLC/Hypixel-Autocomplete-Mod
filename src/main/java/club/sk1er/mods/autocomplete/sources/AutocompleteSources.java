@@ -10,6 +10,7 @@ public enum AutocompleteSources {
     FRIENDS(new FriendsSource(AutocompleteMod.instance.getMasterConfig().getFriendsConfig())),
     GUILD(new GuildSource());
 
+
     private AutocompleteSource source;
 
     AutocompleteSources(AutocompleteSource source) {

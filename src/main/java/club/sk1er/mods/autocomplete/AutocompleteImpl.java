@@ -1,21 +1,27 @@
 package club.sk1er.mods.autocomplete;
 
-import club.sk1er.mods.autocomplete.sources.AutocompleteSource;
+import club.sk1er.mods.autocomplete.sources.AutocompleteSources;
 import net.minecraft.client.Minecraft;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.BlockPos;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class AutocompleteImpl extends CommandBase {
-    private AutocompleteSource source;
+    private AutocompleteSources[] sources;
     private String commandName;
 
-    public AutocompleteImpl(AutocompleteSource source, String commandName) {
-        this.source = source;
+    @Override
+    public boolean canCommandSenderUseCommand(ICommandSender sender) {
+        return true;
+    }
+
+    public AutocompleteImpl(String commandName, AutocompleteSources... source) {
+        this.sources = source;
         this.commandName = commandName;
     }
 
@@ -35,8 +41,11 @@ public class AutocompleteImpl extends CommandBase {
     }
 
     private String[] getListOfPlayerUsernames() {
-        Set<String> strings = source.get();
-        return strings.toArray(new String[strings.size()]);
+        Set<String> set = new HashSet<>();
+        for (AutocompleteSources autocompleteSource : sources) {
+            set.addAll(autocompleteSource.get());
+        }
+        return set.toArray(new String[0]);
     }
 
 
