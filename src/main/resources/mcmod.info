@@ -1,0 +1,16 @@
+[
+{
+  "modid": "hypixel_auto_complete",
+  "name": "Hypixel Autocomplete Mod",
+  "description": "Adds tab completion for Hypixel commands",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Sk1er"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
