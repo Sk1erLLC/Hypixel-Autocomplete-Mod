@@ -32,4 +32,7 @@ public class FriendsConfig extends AutocompleteConfig {
         data.put("ranks", jsonHolder);
     }
 
+    public void toggle(HypixelRank value) {
+        states.put(value, !get(value));
+    }
 }

@@ -15,14 +15,14 @@ public class AutocompleteImpl extends CommandBase {
     private AutocompleteSources[] sources;
     private String commandName;
 
-    @Override
-    public boolean canCommandSenderUseCommand(ICommandSender sender) {
-        return true;
-    }
-
     public AutocompleteImpl(String commandName, AutocompleteSources... source) {
         this.sources = source;
         this.commandName = commandName;
+    }
+
+    @Override
+    public boolean canCommandSenderUseCommand(ICommandSender sender) {
+        return true;
     }
 
     @Override
@@ -42,6 +42,8 @@ public class AutocompleteImpl extends CommandBase {
 
     private String[] getListOfPlayerUsernames() {
         Set<String> set = new HashSet<>();
+        if (!AutocompleteMod.instance.getMasterConfig().isEnabled())
+            return new String[0];
         for (AutocompleteSources autocompleteSource : sources) {
             set.addAll(autocompleteSource.get());
         }

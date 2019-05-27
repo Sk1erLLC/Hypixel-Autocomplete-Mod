@@ -11,7 +11,7 @@ public enum HypixelRank {
     VIP_PLUS("VIP+"),
     VIP("VIP"),
     NONE("NONE"),
-    ERROR("Error");
+    ERROR("Unidentified");
 
 
     private String displayName;

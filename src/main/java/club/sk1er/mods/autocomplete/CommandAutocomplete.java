@@ -22,6 +22,6 @@ public class CommandAutocomplete extends CommandBase {
 
     @Override
     public void processCommand(ICommandSender sender, String[] args) throws CommandException {
-
+        AutocompleteMod.instance.display = true;
     }
 }
