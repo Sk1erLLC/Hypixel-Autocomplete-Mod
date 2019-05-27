@@ -23,6 +23,11 @@ public class AutocompleteMod {
         ClientCommandHandler.instance.registerCommand(new CommandAutocomplete());
         masterConfig = new MasterConfig(event.getSuggestedConfigurationFile());
         ClientCommandHandler.instance.registerCommand(new AutocompleteImpl("msg", AutocompleteSources.values()));
+        Multithreading.runAsync(() -> {
+            for (AutocompleteSources value : AutocompleteSources.values()) {
+                value.refresh();
+            }
+        });
     }
 
     public MasterConfig getMasterConfig() {

@@ -6,9 +6,9 @@ import java.util.Set;
 
 public enum AutocompleteSources {
 
-    LOCAL(new LocalSource()),
+    LOCAL(new LocalSource(AutocompleteMod.instance.getMasterConfig().getLocalConfig())),
     FRIENDS(new FriendsSource(AutocompleteMod.instance.getMasterConfig().getFriendsConfig())),
-    GUILD(new GuildSource());
+    GUILD(new GuildSource(AutocompleteMod.instance.getMasterConfig().getGuildConfig()));
 
 
     private AutocompleteSource source;
@@ -19,5 +19,9 @@ public enum AutocompleteSources {
 
     public Set<String> get() {
         return source.get();
+    }
+
+    public void refresh() {
+        source.refresh();
     }
 }

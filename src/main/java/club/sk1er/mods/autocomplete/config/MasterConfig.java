@@ -55,6 +55,14 @@ public class MasterConfig {
         data.put("local", local);
     }
 
+    public GuildConfig getGuildConfig() {
+        return guildConfig;
+    }
+
+    public LocalConfig getLocalConfig() {
+        return localConfig;
+    }
+
     public FriendsConfig getFriendsConfig() {
         return friendsConfig;
     }

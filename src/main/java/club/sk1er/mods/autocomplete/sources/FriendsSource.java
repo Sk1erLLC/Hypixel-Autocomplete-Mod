@@ -15,14 +15,15 @@ public class FriendsSource extends AutocompleteSource {
     private Set<FriendElement> data;
     private FriendsConfig config;
 
-    public FriendsSource(FriendsConfig config) {
+    FriendsSource(FriendsConfig config) {
         this.config = config;
-        refresh();
     }
 
     @Override
     public Set<String> get() {
-        if (data == null)
+        if (data == null || config == null)
+            return new HashSet<>();
+        if(!config.enabled)
             return new HashSet<>();
         return data.stream().filter(friendElement -> config.get(friendElement.rank)).map(FriendElement::getName).collect(Collectors.toSet());
     }
