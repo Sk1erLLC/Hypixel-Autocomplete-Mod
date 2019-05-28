@@ -57,7 +57,7 @@ public class AutocompleteConfigGUI extends GuiScreen {
         int collumns = values.length + 2 + 1;
         int tempY = 35 + offset;
         HashMap<String, Integer> commands = masterConfig.getCommands();
-
+        System.out.println("s");
 
         buttonList.add(new GuiButton(++this.id, width / collumns, tempY, 100, 20, "Command"));
         for (int i = 0; i < values.length; i++) {
@@ -73,7 +73,7 @@ public class AutocompleteConfigGUI extends GuiScreen {
             buttonList.add(new GuiButton(++this.id, width / collumns, tempY, 100, 20, s));
             for (int i = 0; i < values.length; i++) {
                 int finalI = i;
-                reg(new GuiCheckBox(++this.id, width / collumns * (i + 2)+20, tempY+2, "", ((commands.get(s) >> i) & 1) == 1), guiButton -> {
+                reg(new GuiCheckBox(++this.id, width / collumns * (i + 2) + 20, tempY + 2, "", ((commands.get(s) >> i) & 1) == 1), guiButton -> {
 
                 }, guiButton -> {
                     boolean checked = ((GuiCheckBox) guiButton).isChecked();
@@ -151,7 +151,11 @@ public class AutocompleteConfigGUI extends GuiScreen {
         } else if (i > 0) {
             offset -= 11 * scollMultiplier;
         }
-        initGui();
+        for (GuiButton guiButton : buttonList) {
+            guiButton.yPosition += offset;
+        }
+        textField.yPosition +=offset;
+        offset = 0;
     }
 
     private void regSlider(GuiSlider slider) {
