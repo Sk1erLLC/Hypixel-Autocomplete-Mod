@@ -90,7 +90,9 @@ public class AutocompleteConfigGUI extends GuiScreen {
 
             }, guiButton -> {
                 commands.remove(s);
+                instance.delete(s);
                 initGui();
+
             });
             tempY += 22;
         }
