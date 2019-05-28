@@ -26,12 +26,14 @@ public class MasterConfig {
         }
         if (data == null) {
             data = new JsonHolder();
-            commands.put("msg", 0b111);
-            commands.put("tell", 0b111);
-            commands.put("w", 0b111);
-            commands.put("whisper", 0b111);
-            commands.put("party", 0b111);
-            commands.put("p", 0b111);
+            int value = 0b111;
+            commands.put("msg", value);
+            commands.put("tell", value);
+            commands.put("w", value);
+            commands.put("t", value);
+            commands.put("whisper", value);
+            commands.put("party", value);
+            commands.put("p", value);
         }
         load(data);
 

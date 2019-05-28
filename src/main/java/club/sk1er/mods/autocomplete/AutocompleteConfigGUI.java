@@ -73,7 +73,7 @@ public class AutocompleteConfigGUI extends GuiScreen {
             buttonList.add(new GuiButton(++this.id, width / collumns, tempY, 100, 20, s));
             for (int i = 0; i < values.length; i++) {
                 int finalI = i;
-                reg(new GuiCheckBox(++this.id, width / collumns * (i + 2), tempY, "", ((commands.get(s) >> i) & 1) == 1), guiButton -> {
+                reg(new GuiCheckBox(++this.id, width / collumns * (i + 2)+20, tempY+2, "", ((commands.get(s) >> i) & 1) == 1), guiButton -> {
 
                 }, guiButton -> {
                     boolean checked = ((GuiCheckBox) guiButton).isChecked();
@@ -94,11 +94,16 @@ public class AutocompleteConfigGUI extends GuiScreen {
             });
             tempY += 22;
         }
+        String init = "";
+        if (this.textField != null)
+            init = textField.getText();
         textField = new GuiTextField(++id, fontRendererObj, width / collumns, tempY, 100, 20);
-        reg(new GuiButton(++id, width / collumns, tempY + 22, "Add Command"), guiButton -> {
+        textField.setText(init);
+        reg(new GuiButton(++id, width / collumns, tempY + 22, 100, 20, "Add Command"), guiButton -> {
 
         }, guiButton -> {
             commands.put(textField.getText(), 0b111);
+            textField.setText("");
             initGui();
         });
     }
@@ -134,21 +139,19 @@ public class AutocompleteConfigGUI extends GuiScreen {
         for (GuiButton guiButton : this.update.keySet()) {
             this.update.get(guiButton).accept(guiButton);
         }
-
     }
 
     @Override
     public void handleMouseInput() throws IOException {
         super.handleMouseInput();
         int i = Mouse.getEventDWheel();
-        int scollMultiplier = 1;
+        int scollMultiplier = -1;
         if (i < 0) {
             offset += 11 * scollMultiplier;
         } else if (i > 0) {
             offset -= 11 * scollMultiplier;
         }
-
-
+        initGui();
     }
 
     private void regSlider(GuiSlider slider) {
