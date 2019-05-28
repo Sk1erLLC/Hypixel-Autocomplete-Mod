@@ -14,10 +14,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Mod(modid = AutocompleteMod.MODID, version = AutocompleteMod.VERSION)
@@ -69,14 +67,7 @@ public class AutocompleteMod {
         if (hypixel) {
             HashMap<String, Integer> commands = masterConfig.getCommands();
             for (String s : commands.keySet()) {
-                Integer integer = commands.get(s);
-                List<AutocompleteSources> sources = new ArrayList<>();
-                for (int i = 0; i < AutocompleteSources.values().length; i++) {
-                    if (((integer >> i) & 1) == 1) {
-                        sources.add(AutocompleteSources.values()[i]);
-                    }
-                }
-                ensure(s, sources.toArray(new AutocompleteSources[0]));
+                ensure(s, AutocompleteSources.values());
             }
         }
 

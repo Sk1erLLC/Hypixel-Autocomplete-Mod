@@ -105,6 +105,7 @@ public class AutocompleteConfigGUI extends GuiScreen {
             commands.put(textField.getText(), 0b111);
             textField.setText("");
             initGui();
+            instance.ensure(textField.getText(), AutocompleteSources.values());
         });
     }
 
