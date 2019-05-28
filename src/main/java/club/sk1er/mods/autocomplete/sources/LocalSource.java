@@ -23,9 +23,7 @@ public class LocalSource extends AutocompleteSource {
         if (((AutocompleteMod.instance.getMasterConfig().getCommands().get(command) >> AutocompleteSources.LOCAL.ordinal()) & 1) != 1)
             return new HashSet<>();
         Collector<String, ?, Set<String>> stringSetCollector = Collectors.toSet();
-        Set<String> collect = Minecraft.getMinecraft().getNetHandler().getPlayerInfoMap().stream().map(networkPlayerInfo -> networkPlayerInfo.getGameProfile().getName()).collect(stringSetCollector);
-        System.out.println(collect);
-        return collect;
+        return Minecraft.getMinecraft().getNetHandler().getPlayerInfoMap().stream().map(networkPlayerInfo -> networkPlayerInfo.getGameProfile().getName()).collect(stringSetCollector);
     }
 
     @Override
