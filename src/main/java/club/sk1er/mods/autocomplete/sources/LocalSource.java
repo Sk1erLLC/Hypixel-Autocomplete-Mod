@@ -1,5 +1,6 @@
 package club.sk1er.mods.autocomplete.sources;
 
+import club.sk1er.mods.autocomplete.AutocompleteMod;
 import club.sk1er.mods.autocomplete.config.LocalConfig;
 import net.minecraft.client.Minecraft;
 
@@ -16,8 +17,10 @@ public class LocalSource extends AutocompleteSource {
     }
 
     @Override
-    public Set<String> get() {
-        if (localConfig == null || !localConfig.enabled)
+    public Set<String> get(String command) {
+        if (localConfig == null)
+            return new HashSet<>();
+        if (((AutocompleteMod.instance.getMasterConfig().getCommands().get(command) >> AutocompleteSources.LOCAL.ordinal()) & 1) != 1)
             return new HashSet<>();
         Collector<String, ?, Set<String>> stringSetCollector = Collectors.toSet();
         Set<String> collect = Minecraft.getMinecraft().getNetHandler().getPlayerInfoMap().stream().map(networkPlayerInfo -> networkPlayerInfo.getGameProfile().getName()).collect(stringSetCollector);

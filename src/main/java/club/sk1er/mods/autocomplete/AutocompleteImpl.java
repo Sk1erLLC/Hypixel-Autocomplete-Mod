@@ -45,7 +45,7 @@ public class AutocompleteImpl extends CommandBase {
         if (!AutocompleteMod.instance.getMasterConfig().isEnabled())
             return new String[0];
         for (AutocompleteSources autocompleteSource : sources) {
-            set.addAll(autocompleteSource.get());
+            set.addAll(autocompleteSource.get(getCommandName()));
         }
         return set.toArray(new String[0]);
     }

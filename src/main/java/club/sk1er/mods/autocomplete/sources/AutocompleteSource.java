@@ -12,7 +12,7 @@ import java.util.Set;
 
 public abstract class AutocompleteSource {
 
-    public abstract Set<String> get();
+    public abstract Set<String> get(String command);
 
     public JsonHolder fetch(String url) {
         url = url.replace(" ", "%20");

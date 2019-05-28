@@ -100,7 +100,7 @@ public class AutocompleteMod {
     public void tick(TickEvent.ClientTickEvent e) {
         if (display) {
             display = false;
-            Minecraft.getMinecraft().displayGuiScreen(new AutocompleteConfigGUi());
+            Minecraft.getMinecraft().displayGuiScreen(new AutocompleteConfigGUI());
         }
     }
 

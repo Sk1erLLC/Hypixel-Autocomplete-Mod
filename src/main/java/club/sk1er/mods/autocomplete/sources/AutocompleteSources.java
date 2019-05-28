@@ -17,8 +17,8 @@ public enum AutocompleteSources {
         this.source = source;
     }
 
-    public Set<String> get() {
-        return source.get();
+    public Set<String> get(String name) {
+        return source.get(name);
     }
 
     public void refresh() {

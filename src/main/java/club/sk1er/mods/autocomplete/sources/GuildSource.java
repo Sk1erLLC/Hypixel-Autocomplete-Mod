@@ -1,5 +1,6 @@
 package club.sk1er.mods.autocomplete.sources;
 
+import club.sk1er.mods.autocomplete.AutocompleteMod;
 import club.sk1er.mods.autocomplete.JsonHolder;
 import club.sk1er.mods.autocomplete.config.GuildConfig;
 import com.google.gson.JsonArray;
@@ -19,10 +20,10 @@ public class GuildSource extends AutocompleteSource {
     }
 
     @Override
-    public Set<String> get() {
+    public Set<String> get(String command) {
         if (config == null)
             return new HashSet<>();
-        if (!config.enabled)
+        if (((AutocompleteMod.instance.getMasterConfig().getCommands().get(command) >> AutocompleteSources.GUILD.ordinal()) & 1) != 1)
             return new HashSet<>();
         return set;
     }
