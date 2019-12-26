@@ -1,0 +1,3 @@
+<br>
+<p>Hypixel Autocomplete Mod allows you to autocomplete Hypixel commands to player names on your friends list, guild, and local players.</p>
+<br>
