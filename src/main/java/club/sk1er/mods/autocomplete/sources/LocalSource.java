@@ -10,7 +10,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class LocalSource extends AutocompleteSource {
-    private LocalConfig localConfig;
+    private final LocalConfig localConfig;
 
     public LocalSource(LocalConfig localConfig) {
         this.localConfig = localConfig;

@@ -14,7 +14,7 @@ public enum HypixelRank {
     ERROR("Unidentified");
 
 
-    private String displayName;
+    private final String displayName;
 
     HypixelRank(String displayName) {
         this.displayName = displayName;

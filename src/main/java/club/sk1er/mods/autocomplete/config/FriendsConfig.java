@@ -1,7 +1,7 @@
 package club.sk1er.mods.autocomplete.config;
 
 import club.sk1er.mods.autocomplete.HypixelRank;
-import club.sk1er.mods.autocomplete.JsonHolder;
+import net.modcore.api.utils.JsonHolder;
 
 import java.util.EnumMap;
 
@@ -16,7 +16,7 @@ public class FriendsConfig extends AutocompleteConfig {
     @Override
     public void load(JsonHolder data) {
         super.load(data);
-        JsonHolder ranks = data.optJsonObject("ranks");
+        JsonHolder ranks = data.optJSONObject("ranks");
         for (String key : ranks.getKeys()) {
             states.put(HypixelRank.parse(key), ranks.optBoolean(key));
         }

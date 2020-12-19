@@ -11,7 +11,7 @@ public enum AutocompleteSources {
     GUILD(new GuildSource(AutocompleteMod.instance.getMasterConfig().getGuildConfig()));
 
 
-    private AutocompleteSource source;
+    private final AutocompleteSource source;
 
     AutocompleteSources(AutocompleteSource source) {
         this.source = source;

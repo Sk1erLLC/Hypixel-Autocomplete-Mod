@@ -1,11 +1,11 @@
 package club.sk1er.mods.autocomplete.sources;
 
 import club.sk1er.mods.autocomplete.AutocompleteMod;
-import club.sk1er.mods.autocomplete.JsonHolder;
 import club.sk1er.mods.autocomplete.config.GuildConfig;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import net.minecraft.client.Minecraft;
+import net.modcore.api.utils.JsonHolder;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +13,7 @@ import java.util.Set;
 public class GuildSource extends AutocompleteSource {
 
     private HashSet<String> set = new HashSet<>();
-    private GuildConfig config;
+    private final GuildConfig config;
 
     GuildSource(GuildConfig config) {
         this.config = config;
@@ -32,7 +32,7 @@ public class GuildSource extends AutocompleteSource {
     public void refresh() {
         JsonHolder fetch = fetch("https://api.sk1er.club/guild/player/" + Minecraft.getMinecraft().getSession().getPlayerID());
         HashSet<String> players = new HashSet<>();
-        JsonArray jsonElements = fetch.optJsonObject("guild").optJSONArray("members");
+        JsonArray jsonElements = fetch.optJSONObject("guild").optJSONArray("members");
         for (JsonElement jsonElement : jsonElements) {
             JsonHolder jsonHolder = new JsonHolder(jsonElement.getAsJsonObject());
             players.add(jsonHolder.optString("name"));

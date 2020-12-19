@@ -9,6 +9,7 @@ import net.minecraft.client.gui.GuiSlider;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.fml.client.config.GuiCheckBox;
+import net.modcore.api.utils.Multithreading;
 import org.lwjgl.input.Mouse;
 
 import java.awt.Color;
@@ -21,8 +22,8 @@ import java.util.function.Consumer;
 
 public class AutocompleteConfigGUI extends GuiScreen {
     public int offset = 0;
-    private HashMap<GuiButton, Consumer<GuiButton>> clicks = new HashMap<>();
-    private HashMap<GuiButton, Consumer<GuiButton>> update = new HashMap<>();
+    private final HashMap<GuiButton, Consumer<GuiButton>> clicks = new HashMap<>();
+    private final HashMap<GuiButton, Consumer<GuiButton>> update = new HashMap<>();
     private int id;
     private GuiTextField textField;
 
@@ -45,15 +46,12 @@ public class AutocompleteConfigGUI extends GuiScreen {
         AutocompleteSources[] values = AutocompleteSources.values();
         this.reg(new GuiButton(++this.id, 104, 2 + offset, 100, 20, "REFRESH"), (guiButton) -> {
             guiButton.displayString = EnumChatFormatting.GREEN + "Refresh Data";
-        }, (guiButton) -> {
-            Multithreading.runAsync(() -> {
-                        for (AutocompleteSources value : values) {
-                            value.refresh();
-                        }
+        }, (guiButton) -> Multithreading.runAsync(() -> {
+                    for (AutocompleteSources value : values) {
+                        value.refresh();
                     }
-            );
-
-        });
+                }
+        ));
         int collumns = values.length + 2 + 1;
         int tempY = 35 + offset;
         HashMap<String, Integer> commands = masterConfig.getCommands();
@@ -157,7 +155,7 @@ public class AutocompleteConfigGUI extends GuiScreen {
         for (GuiButton guiButton : buttonList) {
             guiButton.yPosition += offset;
         }
-        textField.yPosition +=offset;
+        textField.yPosition += offset;
         offset = 0;
     }
 

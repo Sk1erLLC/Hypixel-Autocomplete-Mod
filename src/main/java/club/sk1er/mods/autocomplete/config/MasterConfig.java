@@ -1,6 +1,6 @@
 package club.sk1er.mods.autocomplete.config;
 
-import club.sk1er.mods.autocomplete.JsonHolder;
+import net.modcore.api.utils.JsonHolder;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -53,11 +53,11 @@ public class MasterConfig {
     }
 
     private void load(JsonHolder data) {
-        friendsConfig.load(data.optJsonObject("friends"));
-        localConfig.load(data.optJsonObject("local"));
-        guildConfig.load(data.optJsonObject("guild"));
+        friendsConfig.load(data.optJSONObject("friends"));
+        localConfig.load(data.optJSONObject("local"));
+        guildConfig.load(data.optJSONObject("guild"));
         enabled = data.optBoolean("enabled", true);
-        JsonHolder commands = data.optJsonObject("commands");
+        JsonHolder commands = data.optJSONObject("commands");
         for (String key : commands.getKeys()) {
             this.commands.put(key, commands.optInt(key));
         }
