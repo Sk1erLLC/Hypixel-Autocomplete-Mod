@@ -2,17 +2,17 @@ package club.sk1er.mods.autocomplete;
 
 import club.sk1er.mods.autocomplete.config.MasterConfig;
 import club.sk1er.mods.autocomplete.sources.AutocompleteSources;
-import net.minecraft.client.Minecraft;
 import net.minecraft.command.ICommand;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
+import net.modcore.api.ModCoreAPI;
 import net.modcore.api.utils.Multithreading;
 
 import java.util.HashMap;
@@ -22,13 +22,11 @@ import java.util.Set;
 @Mod(modid = AutocompleteMod.MODID, version = AutocompleteMod.VERSION)
 public class AutocompleteMod {
     public static final String MODID = "hypixel_auto_complete";
-    public static final String VERSION = "1.0";
+    public static final String VERSION = "1.1";
     public static AutocompleteMod instance;
-    public boolean display;
     private MasterConfig masterConfig;
     private boolean hypixel;
-    private Set<String> registeredCommands = new HashSet<>();
-
+    private final Set<String> registeredCommands = new HashSet<>();
 
     public AutocompleteMod() {
         instance = this;
@@ -36,7 +34,6 @@ public class AutocompleteMod {
 
     @EventHandler
     public void init(FMLPreInitializationEvent event) {
-        ClientCommandHandler.instance.registerCommand(new CommandAutocomplete());
         masterConfig = new MasterConfig(event.getSuggestedConfigurationFile());
         Multithreading.runAsync(() -> {
             for (AutocompleteSources value : AutocompleteSources.values()) {
@@ -44,6 +41,11 @@ public class AutocompleteMod {
             }
         });
         MinecraftForge.EVENT_BUS.register(this);
+    }
+
+    @EventHandler
+    public void init(FMLInitializationEvent event) {
+        ModCoreAPI.getCommandRegistry().registerCommand(new CommandAutocomplete());
     }
 
     public void ensure(String name, AutocompleteSources... sources) {
@@ -71,9 +73,7 @@ public class AutocompleteMod {
                 ensure(s, AutocompleteSources.values());
             }
         }
-
     }
-
 
     @SubscribeEvent
     public void onPlayerLogOutEvent(FMLNetworkEvent.ClientDisconnectionFromServerEvent event) {
@@ -85,14 +85,6 @@ public class AutocompleteMod {
             registeredCommands.clear();
         } catch (Exception e) {
             e.printStackTrace();
-        }
-    }
-
-    @SubscribeEvent
-    public void tick(TickEvent.ClientTickEvent e) {
-        if (display) {
-            display = false;
-            Minecraft.getMinecraft().displayGuiScreen(new AutocompleteConfigGUI());
         }
     }
 

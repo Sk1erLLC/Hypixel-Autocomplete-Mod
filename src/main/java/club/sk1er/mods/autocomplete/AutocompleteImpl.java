@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Set;
 
 public class AutocompleteImpl extends CommandBase {
-    private AutocompleteSources[] sources;
-    private String commandName;
+    private final AutocompleteSources[] sources;
+    private final String commandName;
 
     public AutocompleteImpl(String commandName, AutocompleteSources... source) {
         this.sources = source;
