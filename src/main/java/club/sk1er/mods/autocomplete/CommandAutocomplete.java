@@ -1,8 +1,8 @@
 package club.sk1er.mods.autocomplete;
 
-import net.modcore.api.commands.Command;
-import net.modcore.api.commands.DefaultHandler;
-import net.modcore.api.utils.GuiUtil;
+import gg.essential.api.commands.Command;
+import gg.essential.api.commands.DefaultHandler;
+import gg.essential.api.utils.GuiUtil;
 
 public class CommandAutocomplete extends Command {
     public CommandAutocomplete() {

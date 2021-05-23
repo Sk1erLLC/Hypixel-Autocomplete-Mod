@@ -4,8 +4,8 @@ import club.sk1er.mods.autocomplete.AutocompleteMod;
 import club.sk1er.mods.autocomplete.config.GuildConfig;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import gg.essential.api.utils.JsonHolder;
 import net.minecraft.client.Minecraft;
-import net.modcore.api.utils.JsonHolder;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,7 +1,7 @@
 package club.sk1er.mods.autocomplete.sources;
 
 import com.google.gson.JsonObject;
-import net.modcore.api.utils.JsonHolder;
+import gg.essential.api.utils.JsonHolder;
 import org.apache.commons.io.IOUtils;
 
 import java.io.InputStream;

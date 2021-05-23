@@ -1,6 +1,6 @@
 package club.sk1er.mods.autocomplete.config;
 
-import net.modcore.api.utils.JsonHolder;
+import gg.essential.api.utils.JsonHolder;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -9,11 +9,11 @@ import java.util.HashMap;
 
 public class MasterConfig {
 
-    private FriendsConfig friendsConfig = new FriendsConfig();
-    private GuildConfig guildConfig = new GuildConfig();
-    private LocalConfig localConfig = new LocalConfig();
+    private final FriendsConfig friendsConfig = new FriendsConfig();
+    private final GuildConfig guildConfig = new GuildConfig();
+    private final LocalConfig localConfig = new LocalConfig();
     private boolean enabled = true;
-    private HashMap<String, Integer> commands = new HashMap<>();
+    private final HashMap<String, Integer> commands = new HashMap<>();
 
     public MasterConfig(File suggestedConfigurationFile) {
         JsonHolder data = null;

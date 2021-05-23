@@ -2,6 +2,7 @@ package club.sk1er.mods.autocomplete;
 
 import club.sk1er.mods.autocomplete.config.MasterConfig;
 import club.sk1er.mods.autocomplete.sources.AutocompleteSources;
+import gg.essential.api.utils.Multithreading;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -9,7 +10,6 @@ import net.minecraft.client.gui.GuiSlider;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.fml.client.config.GuiCheckBox;
-import net.modcore.api.utils.Multithreading;
 import org.lwjgl.input.Mouse;
 
 import java.awt.Color;

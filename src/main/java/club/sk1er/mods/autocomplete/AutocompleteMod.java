@@ -2,6 +2,8 @@ package club.sk1er.mods.autocomplete;
 
 import club.sk1er.mods.autocomplete.config.MasterConfig;
 import club.sk1er.mods.autocomplete.sources.AutocompleteSources;
+import gg.essential.api.EssentialAPI;
+import gg.essential.api.utils.Multithreading;
 import net.minecraft.command.ICommand;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
@@ -12,8 +14,6 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
-import net.modcore.api.ModCoreAPI;
-import net.modcore.api.utils.Multithreading;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -45,7 +45,7 @@ public class AutocompleteMod {
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
-        ModCoreAPI.getCommandRegistry().registerCommand(new CommandAutocomplete());
+        EssentialAPI.getCommandRegistry().registerCommand(new CommandAutocomplete());
     }
 
     public void ensure(String name, AutocompleteSources... sources) {

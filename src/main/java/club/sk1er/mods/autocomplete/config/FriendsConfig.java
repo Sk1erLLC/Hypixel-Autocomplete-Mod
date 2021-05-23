@@ -1,13 +1,13 @@
 package club.sk1er.mods.autocomplete.config;
 
 import club.sk1er.mods.autocomplete.HypixelRank;
-import net.modcore.api.utils.JsonHolder;
+import gg.essential.api.utils.JsonHolder;
 
 import java.util.EnumMap;
 
 public class FriendsConfig extends AutocompleteConfig {
 
-    private EnumMap<HypixelRank, Boolean> states = new EnumMap<>(HypixelRank.class);
+    private final EnumMap<HypixelRank, Boolean> states = new EnumMap<>(HypixelRank.class);
 
     public boolean get(HypixelRank rank) {
         return states.getOrDefault(rank, true);

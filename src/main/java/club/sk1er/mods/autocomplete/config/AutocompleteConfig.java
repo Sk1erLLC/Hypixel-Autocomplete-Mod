@@ -1,7 +1,7 @@
 package club.sk1er.mods.autocomplete.config;
 
 
-import net.modcore.api.utils.JsonHolder;
+import gg.essential.api.utils.JsonHolder;
 
 public abstract class AutocompleteConfig {
 

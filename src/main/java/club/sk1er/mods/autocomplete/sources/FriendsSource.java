@@ -3,8 +3,8 @@ package club.sk1er.mods.autocomplete.sources;
 import club.sk1er.mods.autocomplete.AutocompleteMod;
 import club.sk1er.mods.autocomplete.HypixelRank;
 import club.sk1er.mods.autocomplete.config.FriendsConfig;
+import gg.essential.api.utils.JsonHolder;
 import net.minecraft.client.Minecraft;
-import net.modcore.api.utils.JsonHolder;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class FriendsSource extends AutocompleteSource {
 
     private Set<FriendElement> data;
-    private FriendsConfig config;
+    private final FriendsConfig config;
 
     FriendsSource(FriendsConfig config) {
         this.config = config;
