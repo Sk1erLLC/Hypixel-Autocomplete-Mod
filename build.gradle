@@ -412,7 +412,8 @@ jar {
             attributes "ModSide": "CLIENT",
                     "FMLCorePluginContainsFMLMod": "Yes, yes it does",
                     "TweakClass": "club.sk1er.mods.autocomplete.tweaker.AutocompleteTweaker",
-                    "TweakOrder": "0"
+                    "TweakOrder": "0",
+                    "FMLAT": "hypixel_autocomplete_at.cfg"
         }
     }
 }
