@@ -22,7 +22,7 @@ import java.util.Set;
 @Mod(modid = AutocompleteMod.MODID, version = AutocompleteMod.VERSION)
 public class AutocompleteMod {
     public static final String MODID = "hypixel_auto_complete";
-    public static final String VERSION = "1.1";
+    public static final String VERSION = "1.1.0";
     public static AutocompleteMod instance;
     private MasterConfig masterConfig;
     private boolean hypixel;
