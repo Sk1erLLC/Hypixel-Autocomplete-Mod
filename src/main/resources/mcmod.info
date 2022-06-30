@@ -4,7 +4,7 @@
   "name": "Hypixel Autocomplete Mod",
   "description": "Adds tab completion for Hypixel commands",
   "version": "${version}",
-  "mcversion": "${mcversion}",
+  "mcversion": "${mcVersionStr}",
   "url": "",
   "updateUrl": "",
   "authorList": ["Sk1er"],
